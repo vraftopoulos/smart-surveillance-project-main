@@ -1,0 +1,156 @@
+[
+    {
+        "id": "8cc3527fd6443351",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "189b1b71960d1857",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mytb",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "3eb5231a2d76a055",
+        "type": "amqp-broker",
+        "name": "rabbitmq",
+        "host": "rabbitmq",
+        "port": "5672",
+        "vhost": "",
+        "tls": false,
+        "credsFromSettings": false
+    },
+    {
+        "id": "bb48e4d2c219c264",
+        "type": "function",
+        "z": "8cc3527fd6443351",
+        "name": "function 1",
+        "func": "// Το μήνυμα από το MinIO έρχεται ως JSON\nvar minioEvent = msg.payload;\n\n// Παίρνουμε το όνομα του αρχείου που ανέβηκε\nvar fileName = minioEvent.Records[0].s3.object.key;\n\n// Φτιάχνουμε το πακέτο για το ThingsBoard\nmsg.payload = {\n    \"event\": \"Motion Detected\",\n    \"imageName\": fileName,\n    \"status\": \"Alarm\"\n};\n\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 120,
+        "wires": [
+            [
+                "6efa649c91e9dbb8"
+            ]
+        ]
+    },
+    {
+        "id": "0b83b94b1bee6b44",
+        "type": "mqtt out",
+        "z": "8cc3527fd6443351",
+        "name": "",
+        "topic": "v1/devices/me/telemetry",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "189b1b71960d1857",
+        "x": 750,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "cad447d3a29a3994",
+        "type": "debug",
+        "z": "8cc3527fd6443351",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "6efa649c91e9dbb8",
+        "type": "trigger",
+        "z": "8cc3527fd6443351",
+        "name": "",
+        "op1": "",
+        "op2": "{\"imageName\":\"\",\"status\":\"No Motion\"}",
+        "op1type": "pay",
+        "op2type": "json",
+        "duration": "30",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 530,
+        "y": 180,
+        "wires": [
+            [
+                "0b83b94b1bee6b44",
+                "cad447d3a29a3994"
+            ]
+        ]
+    },
+    {
+        "id": "723843b9de8f25ce",
+        "type": "amqp-in",
+        "z": "8cc3527fd6443351",
+        "name": "",
+        "broker": "3eb5231a2d76a055",
+        "prefetch": 0,
+        "noAck": true,
+        "exchangeName": "security-exchange",
+        "exchangeType": "topic",
+        "exchangeRoutingKey": "security-event",
+        "exchangeDurable": true,
+        "queueName": "security-queue",
+        "queueExclusive": false,
+        "queueDurable": true,
+        "queueAutoDelete": false,
+        "headers": "{}",
+        "x": 210,
+        "y": 120,
+        "wires": [
+            [
+                "bb48e4d2c219c264"
+            ]
+        ]
+    }
+]

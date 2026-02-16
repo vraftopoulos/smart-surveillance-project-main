@@ -1,0 +1,20 @@
+# Docker data persistence folders
+**/data/
+**/logs/
+**/mytb-data/
+**/mytb-logs/
+
+# Αγνοούμε όλο τον φάκελο node_red_data
+infrastructure/node_red_data/*
+
+# Αλλά εξαιρούμε τα αρχεία που χρειαζόμαστε (το ! σημαίνει "μην το αγνοείς")
+!infrastructure/node_red_data/flows.json
+!infrastructure/node_red_data/flows_cred.json
+!infrastructure/node_red_data/settings.js
+
+# Αγνοούμε επίσης τα node_modules (πολύ σημαντικό!)
+**/node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db

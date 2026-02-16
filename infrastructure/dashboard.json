@@ -1,0 +1,454 @@
+{
+  "title": "Live Demo",
+  "image": null,
+  "mobileHide": false,
+  "mobileOrder": null,
+  "configuration": {
+    "description": "",
+    "widgets": {
+      "66bb9a94-b320-8838-0079-8352812f09cc": {
+        "typeFullFqn": "system.cards.html_value_card",
+        "type": "latest",
+        "sizeX": 7.5,
+        "sizeY": 3,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "name": "",
+              "entityAliasId": "e0d0abb8-f8af-1e0e-54a6-e1eca71e9fbb",
+              "dataKeys": [
+                {
+                  "name": "imageName",
+                  "type": "timeseries",
+                  "label": "imageName",
+                  "color": "#2196f3",
+                  "settings": {},
+                  "_hash": 0.23525851753816263
+                },
+                {
+                  "name": "status",
+                  "type": "timeseries",
+                  "label": "status",
+                  "color": "#4caf50",
+                  "settings": {},
+                  "_hash": 0.6057860451790739
+                }
+              ],
+              "alarmFilterConfig": {
+                "statusList": [
+                  "ACTIVE"
+                ]
+              }
+            }
+          ],
+          "timewindow": {
+            "displayValue": "",
+            "selectedTab": 0,
+            "realtime": {
+              "realtimeType": 1,
+              "interval": 1000,
+              "timewindowMs": 60000,
+              "quickInterval": "CURRENT_DAY",
+              "hideInterval": false,
+              "hideLastInterval": false,
+              "hideQuickInterval": false
+            },
+            "history": {
+              "historyType": 0,
+              "interval": 1000,
+              "timewindowMs": 60000,
+              "fixedTimewindow": {
+                "startTimeMs": 1770895470664,
+                "endTimeMs": 1770981870664
+              },
+              "quickInterval": "CURRENT_DAY",
+              "hideInterval": false,
+              "hideLastInterval": false,
+              "hideFixedInterval": false,
+              "hideQuickInterval": false
+            },
+            "aggregation": {
+              "type": "AVG",
+              "limit": 25000
+            }
+          },
+          "showTitle": false,
+          "backgroundColor": "#fff",
+          "color": "rgba(0, 0, 0, 0.87)",
+          "padding": "0px",
+          "settings": {
+            "cardHtml": "<audio id=\"alarmSound\">\r\n  <source src=\"http://localhost:9000/security-photos/alarm-sound.mp3\" type=\"audio/mpeg\">\r\n</audio>\r\n\r\n<script>\r\n    // Έλεγχος αν το status είναι Alarm\r\n    if (\"${status}\" === \"Alarm\") {\r\n        var audio = document.getElementById(\"alarmSound\");\r\n        audio.play().catch(function(error) {\r\n            console.log(\"Ο browser μπλόκαρε την αυτόματη αναπαραγωγή: \", error);\r\n        });\r\n    }\r\n</script>\r\n\r\n\r\n<div style=\"background: #111; border: 2px solid #ff0000; border-radius: 12px; padding: 10px; color: white; text-align: center; overflow: hidden; max-height: 100%;\">\r\n    <h3 style=\"color: #ff0000; margin: 5px 0; font-size: 1.1em; text-transform: uppercase;\">🚨 Camera Feed</h3>\r\n    \r\n    <div style=\"background: #000; border-radius: 8px; padding: 5px; display: flex; justify-content: center; align-items: center;\">\r\n        <img src=\"http://localhost:9000/security-photos/${imageName}\" \r\n             style=\"max-width: 100%; max-height: 250px; width: auto; height: auto; border-radius: 4px; border: 1px solid #333;\" \r\n             alt=\"Waiting for detection...\"/>\r\n    </div>\r\n    \r\n    <div style=\"margin-top: 8px; font-family: monospace; font-size: 0.85em; background: rgba(255,255,255,0.05); padding: 5px; border-radius: 5px;\">\r\n        <span style=\"color: #888;\">File:</span> ${imageName}<br>\r\n        <span style=\"color: #ffcc00;\">Status: ${status}</span>\r\n    </div>\r\n</div>",
+            "cardCss": ".card {\n   width: 100%;\n   height: 100%;\n   border: 2px solid #ccc;\n   box-sizing: border-box;\n}\n\n.card .content {\n   padding: 20px;\n   display: flex;\n   flex-direction: row;\n   align-items: center;\n   justify-content: space-around;\n   height: 100%;\n   box-sizing: border-box;\n}\n\n.card .content .column {\n   display: flex;\n   flex-direction: column;    \n   justify-content: space-around;\n   height: 100%;\n}\n\n.card h1 {\n    text-transform: uppercase;\n    color: #999;\n    font-size: 20px;\n    font-weight: bold;\n    margin: 0;\n    padding-bottom: 10px;\n    line-height: 32px;\n}\n\n.card .value {\n    font-size: 38px;\n    font-weight: 200;\n}\n\n.card .description {\n    font-size: 20px;\n    color: #999;\n}\n"
+          },
+          "title": "HTML Value Card",
+          "dropShadow": false,
+          "enableFullscreen": true,
+          "widgetStyle": {},
+          "titleStyle": {
+            "fontSize": "16px",
+            "fontWeight": 400
+          },
+          "useDashboardTimewindow": true,
+          "showLegend": false,
+          "actions": {},
+          "displayTimewindow": true
+        },
+        "row": 0,
+        "col": 0,
+        "id": "66bb9a94-b320-8838-0079-8352812f09cc"
+      },
+      "c14deb97-45bc-e3d6-c2c4-0053528158a4": {
+        "typeFullFqn": "system.simple_temperature_chart_card",
+        "type": "timeseries",
+        "sizeX": 4.5,
+        "sizeY": 2,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "name": "",
+              "entityAliasId": "e0d0abb8-f8af-1e0e-54a6-e1eca71e9fbb",
+              "filterId": "2ae9c296-b01c-6693-0024-6050607fa0fe",
+              "dataKeys": [
+                {
+                  "name": "status",
+                  "type": "timeseries",
+                  "label": "status",
+                  "color": "rgba(0, 0, 0, 0.87)",
+                  "settings": {},
+                  "_hash": 0.5429894593566421,
+                  "aggregationType": null,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": false,
+                  "postFuncBody": null
+                }
+              ],
+              "alarmFilterConfig": {
+                "statusList": [
+                  "ACTIVE"
+                ]
+              },
+              "latestDataKeys": null
+            }
+          ],
+          "showTitle": true,
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": null,
+          "padding": "0",
+          "settings": {
+            "layout": "left",
+            "autoScale": true,
+            "showValue": false,
+            "valueFont": {
+              "family": "Roboto",
+              "size": 28,
+              "sizeUnit": "px",
+              "style": "normal",
+              "weight": "500",
+              "lineHeight": "32px"
+            },
+            "valueColor": {
+              "type": "range",
+              "color": "rgba(0, 0, 0, 0.87)",
+              "rangeList": {
+                "advancedMode": false,
+                "range": [
+                  {
+                    "from": null,
+                    "to": -20,
+                    "color": "#234CC7"
+                  },
+                  {
+                    "from": -20,
+                    "to": 0,
+                    "color": "#305AD7"
+                  },
+                  {
+                    "from": 0,
+                    "to": 10,
+                    "color": "#7191EF"
+                  },
+                  {
+                    "from": 10,
+                    "to": 20,
+                    "color": "#FFA600"
+                  },
+                  {
+                    "from": 20,
+                    "to": 30,
+                    "color": "#F36900"
+                  },
+                  {
+                    "from": 30,
+                    "to": 40,
+                    "color": "#F04022"
+                  },
+                  {
+                    "from": 40,
+                    "to": null,
+                    "color": "#D81838"
+                  }
+                ]
+              },
+              "colorFunction": "var temperature = value;\nif (typeof temperature !== undefined) {\n  var percent = (temperature + 60)/120 * 100;\n  return tinycolor.mix('blue', 'red', percent).toHexString();\n}\nreturn 'blue';"
+            },
+            "background": {
+              "type": "color",
+              "color": "#fff",
+              "overlay": {
+                "enabled": false,
+                "color": "rgba(255,255,255,0.72)",
+                "blur": 3
+              }
+            },
+            "padding": "12px"
+          },
+          "title": "Παραβιάσεις",
+          "dropShadow": true,
+          "enableFullscreen": false,
+          "titleStyle": null,
+          "mobileHeight": null,
+          "configMode": "advanced",
+          "actions": {},
+          "showTitleIcon": true,
+          "titleIcon": "warning",
+          "iconColor": "rgba(255, 2, 2, 0.87)",
+          "titleFont": {
+            "size": 16,
+            "sizeUnit": "px",
+            "family": "Roboto",
+            "weight": "500",
+            "style": "normal",
+            "lineHeight": "24px"
+          },
+          "iconSize": "18px",
+          "titleTooltip": "",
+          "widgetStyle": {},
+          "widgetCss": "",
+          "pageSize": 1024,
+          "noDataDisplayMessage": "",
+          "useDashboardTimewindow": false,
+          "decimals": 0,
+          "titleColor": "rgba(0, 0, 0, 0.87)",
+          "borderRadius": null,
+          "units": null,
+          "displayTimewindow": true,
+          "timewindow": {
+            "hideAggregation": false,
+            "hideAggInterval": false,
+            "hideTimezone": false,
+            "selectedTab": 1,
+            "realtime": {
+              "realtimeType": 1,
+              "interval": 43200000,
+              "timewindowMs": 60000,
+              "quickInterval": "CURRENT_MONTH_SO_FAR",
+              "hideInterval": false,
+              "hideLastInterval": false,
+              "hideQuickInterval": false
+            },
+            "history": {
+              "historyType": 2,
+              "interval": 86400000,
+              "timewindowMs": 60000,
+              "fixedTimewindow": {
+                "startTimeMs": 1697382151041,
+                "endTimeMs": 1697468551041
+              },
+              "quickInterval": "CURRENT_DAY",
+              "hideInterval": false,
+              "hideLastInterval": false,
+              "hideFixedInterval": false,
+              "hideQuickInterval": false
+            },
+            "aggregation": {
+              "type": "COUNT",
+              "limit": 25000
+            }
+          },
+          "timewindowStyle": {
+            "showIcon": false,
+            "iconSize": "24px",
+            "icon": "query_builder",
+            "iconPosition": "left",
+            "font": {
+              "size": 12,
+              "sizeUnit": "px",
+              "family": "Roboto",
+              "weight": "400",
+              "style": "normal",
+              "lineHeight": "16px"
+            },
+            "color": "rgba(0, 0, 0, 0.38)",
+            "displayTypePrefix": true
+          }
+        },
+        "row": 0,
+        "col": 0,
+        "id": "c14deb97-45bc-e3d6-c2c4-0053528158a4"
+      }
+    },
+    "states": {
+      "default": {
+        "name": "Live Demo",
+        "root": true,
+        "layouts": {
+          "main": {
+            "widgets": {
+              "66bb9a94-b320-8838-0079-8352812f09cc": {
+                "sizeX": 16,
+                "sizeY": 10,
+                "row": 0,
+                "col": 0
+              },
+              "c14deb97-45bc-e3d6-c2c4-0053528158a4": {
+                "sizeX": 11,
+                "sizeY": 5,
+                "mobileHeight": null,
+                "row": 10,
+                "col": 3
+              }
+            },
+            "gridSettings": {
+              "layoutType": "default",
+              "backgroundColor": "#eeeeee",
+              "columns": 24,
+              "margin": 10,
+              "outerMargin": true,
+              "backgroundSizeMode": "100%"
+            }
+          }
+        }
+      }
+    },
+    "entityAliases": {
+      "e0d0abb8-f8af-1e0e-54a6-e1eca71e9fbb": {
+        "id": "e0d0abb8-f8af-1e0e-54a6-e1eca71e9fbb",
+        "alias": "Camera_Alias",
+        "filter": {
+          "type": "deviceType",
+          "resolveMultiple": true,
+          "deviceTypes": [
+            "camera-device"
+          ],
+          "deviceNameFilter": ""
+        }
+      }
+    },
+    "filters": {
+      "2ae9c296-b01c-6693-0024-6050607fa0fe": {
+        "id": "2ae9c296-b01c-6693-0024-6050607fa0fe",
+        "filter": "Status Alarm",
+        "keyFilters": [
+          {
+            "key": {
+              "type": "ENTITY_FIELD",
+              "key": "status"
+            },
+            "valueType": "STRING",
+            "predicates": [
+              {
+                "keyFilterPredicate": {
+                  "operation": "EQUAL",
+                  "value": {
+                    "defaultValue": "Alarm",
+                    "dynamicValue": null
+                  },
+                  "ignoreCase": false,
+                  "type": "STRING"
+                },
+                "userInfo": {
+                  "editable": true,
+                  "label": "",
+                  "autogeneratedLabel": true,
+                  "order": 0
+                }
+              }
+            ]
+          }
+        ],
+        "editable": true
+      },
+      "fd65bc29-9e64-0344-086a-f4b499ae7b13": {
+        "id": "fd65bc29-9e64-0344-086a-f4b499ae7b13",
+        "filter": "Alarm",
+        "keyFilters": [
+          {
+            "key": {
+              "type": "ENTITY_FIELD",
+              "key": "Status"
+            },
+            "valueType": "STRING",
+            "predicates": [
+              {
+                "keyFilterPredicate": {
+                  "operation": "EQUAL",
+                  "value": {
+                    "defaultValue": "Alarm",
+                    "dynamicValue": null
+                  },
+                  "ignoreCase": false,
+                  "type": "STRING"
+                },
+                "userInfo": {
+                  "editable": true,
+                  "label": "",
+                  "autogeneratedLabel": true,
+                  "order": 0
+                }
+              }
+            ]
+          }
+        ],
+        "editable": true
+      }
+    },
+    "timewindow": {
+      "hideAggregation": false,
+      "hideAggInterval": false,
+      "hideTimezone": false,
+      "selectedTab": 0,
+      "realtime": {
+        "realtimeType": 0,
+        "interval": 1000,
+        "timewindowMs": 1000,
+        "quickInterval": "CURRENT_DAY",
+        "hideInterval": false,
+        "hideLastInterval": false,
+        "hideQuickInterval": false
+      },
+      "history": {
+        "historyType": 0,
+        "interval": 10000,
+        "timewindowMs": 60000,
+        "fixedTimewindow": {
+          "startTimeMs": 1770894837650,
+          "endTimeMs": 1770981237650
+        },
+        "quickInterval": "CURRENT_DAY",
+        "hideInterval": false,
+        "hideLastInterval": false,
+        "hideFixedInterval": false,
+        "hideQuickInterval": false
+      },
+      "aggregation": {
+        "type": "AVG",
+        "limit": 25000
+      },
+      "timezone": null
+    },
+    "settings": {
+      "stateControllerId": "entity",
+      "showTitle": false,
+      "showDashboardsSelect": true,
+      "showEntitiesSelect": true,
+      "showDashboardTimewindow": true,
+      "showDashboardExport": true,
+      "toolbarAlwaysOpen": true
+    }
+  },
+  "name": "Live Demo"
+}
