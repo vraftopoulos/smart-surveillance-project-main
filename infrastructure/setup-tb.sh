@@ -29,10 +29,10 @@ curl -s -X DELETE http://mytb:9090/api/device-credentials/$DEVICE_ID \
   -H "X-Authorization: Bearer $TOKEN"
 
 # Επαναφορά του σωστού Token
-curl -s -X POST http://mytb:9090/api/device-credentials \
+curl -X POST http://thingsboard:9090/api/device-credentials \
   -H "X-Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
-  -d "{\"deviceId\": {\"id\": \"$DEVICE_ID\", \"entityType\": \"DEVICE\"}, \"credentialsId\": \"my_camera_token\", \"credentialsType\": \"ACCESS_TOKEN\"}"
+  -d "{\"deviceId\":{\"id\":\"$DEVICE_ID\",\"entityType\":\"DEVICE\"},\"credentialsType\":\"ACCESS_TOKEN\",\"credentialsId\":\"my_camera_token\"}"
   
   echo "Access Token: my_camera_token set."
 

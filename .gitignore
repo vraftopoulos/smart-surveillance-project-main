@@ -7,12 +7,13 @@
 # Αγνοούμε όλο τον φάκελο node_red_data
 infrastructure/node_red_data/*
 
-# Αλλά εξαιρούμε τα αρχεία που χρειαζόμαστε (το ! σημαίνει "μην το αγνοείς")
+# Αλλά εξαιρούμε τα αρχεία που χρειαζόμαστε
 !infrastructure/node_red_data/flows.json
 !infrastructure/node_red_data/flows_cred.json
 !infrastructure/node_red_data/settings.js
+!infrastructure/node_red_data/package.json
 
-# Αγνοούμε επίσης τα node_modules (πολύ σημαντικό!)
+# Αγνοούμε επίσης τα node_modules
 **/node_modules/
 
 # OS files

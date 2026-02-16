@@ -66,17 +66,6 @@ services:
     volumes:
       - ./minio/data:/data # Persist object data
 
-  minio-setup:
-    image: minio/mc
-    restart: on-failure
-    depends_on:
-      - minio
-      - rabbitmq
-    volumes:
-      - ./setup-minio.sh:/setup-minio.sh  # Σύνδεση του script
-      - .:/project_files
-    entrypoint: ["/bin/sh", "/setup-minio.sh"]
-
   tb-setup:
     image: alpine
     restart: on-failure
@@ -86,3 +75,24 @@ services:
       - ./dashboard.json:/dashboard.json
       - ./setup-tb.sh:/setup-tb.sh  # Συνδέουμε το script αρχείο
     entrypoint: ["/bin/sh", "/setup-tb.sh"]
+  
+  rabbitmq-setup:
+    image: alpine
+    depends_on:
+      - rabbitmq
+    volumes:
+      - ./setup-rabbitmq.sh:/setup-rabbitmq.sh
+    entrypoint: ["/bin/sh", "/setup-rabbitmq.sh"]
+
+  minio-setup:
+    image: minio/mc
+    tty: true
+    depends_on:
+      rabbitmq-setup:
+        condition: service_completed_successfully
+      minio:
+        condition: service_healthy
+    volumes:
+      - ./setup-minio.sh:/setup-minio.sh
+      - .:/project_files
+    entrypoint: ["/bin/sh", "/setup-minio.sh"]
